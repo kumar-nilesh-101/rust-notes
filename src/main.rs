@@ -1,8 +1,18 @@
 fn main() {
-    let (sum, product) = sum_mult((2, 3));
-    println!("{} {}", sum, product);
+    let one = Option::Some(1);
+    let two = plus_one(one);
+    let none = plus_one(Option::None);
+
+    if let Some(n) = none {
+        println!("{}", n);
+    } else {
+        panic!("no value found");
+    }
 }
 
-fn sum_mult(v: (i32, i32)) -> (i32, i32) {
-    (v.0 + v.1, v.0 * v.1)
+fn plus_one(v: Option<i32>) -> Option<i32> {
+    match v {
+        Option::None => Option::None,
+        Option::Some(i) => Option::Some(i + 1)
+    }
 }
